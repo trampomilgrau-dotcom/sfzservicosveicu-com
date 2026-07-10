@@ -1,351 +1,118 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Verbena Flores – Flores naturais e plantas ornamentais em São Paulo. Entregas rápidas e qualidade desde 2011. Peça já o seu arranjo!">
-    <meta name="keywords" content="flores, plantas naturais, floricultura, Verbena Flores, São Paulo, arranjos florais, buquê, rosas, entrega de flores">
-    <meta name="author" content="Verbena Flores">
-    <meta name="robots" content="index, follow">
-    <title>Verbena Flores | Flores Naturais e Plantas em São Paulo desde 2011</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --verde-principal: #2E5A3B;
-            --verde-claro: #6B8F71;
-            --rosa-suave: #F9E4E0;
-            --branco: #FFFFFF;
-            --cinza-claro: #F8F9FA;
-            --texto-escuro: #333333;
-            --detalhe-ouro: #C5A059;
-        }
-        body {
-            font-family: 'Lato', sans-serif;
-            color: var(--texto-escuro);
-            scroll-behavior: smooth;
-        }
-        h1, h2, h3, .navbar-brand, .hero-title {
-            font-family: 'Playfair Display', serif;
-        }
-        .btn-primary-custom {
-            background-color: var(--verde-principal);
-            border: none;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .btn-primary-custom:hover {
-            background-color: var(--verde-claro);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(46,90,59,0.3);
-        }
-        .btn-outline-custom {
-            border: 2px solid var(--verde-principal);
-            color: var(--verde-principal);
-            padding: 10px 28px;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .btn-outline-custom:hover {
-            background-color: var(--verde-principal);
-            color: white;
-        }
-        .navbar {
-            background-color: var(--branco) !important;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-        }
-        .navbar-brand {
-            font-size: 1.8rem;
-            color: var(--verde-principal) !important;
-            font-weight: 700;
-        }
-        .nav-link {
-            color: var(--texto-escuro) !important;
-            font-weight: 500;
-            margin: 0 10px;
-        }
-        .nav-link:hover {
-            color: var(--verde-principal) !important;
-        }
-        .hero-section {
-            background: linear-gradient(135deg, rgba(46,90,59,0.8) 0%, rgba(107,143,113,0.4) 100%), 
-                        url('https://images.unsplash.com/photo-1561181286-d3fee7d55364?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-            padding: 120px 0;
-            color: white;
-            text-align: center;
-        }
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-        }
-        .hero-subtitle {
-            font-size: 1.4rem;
-            font-weight: 300;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        .features-icon {
-            font-size: 3rem;
-            color: var(--verde-principal);
-            margin-bottom: 15px;
-        }
-        .card-produto {
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
-        .card-produto:hover {
-            transform: translateY(-5px);
-        }
-        .card-produto img {
-            height: 250px;
-            object-fit: cover;
-        }
-        .depoimento {
-            background-color: var(--rosa-suave);
-            border-radius: 15px;
-            padding: 25px;
-            font-style: italic;
-        }
-        footer {
-            background-color: #2C3E35;
-            color: #ddd;
-        }
-        footer a {
-            color: #ccc;
-            text-decoration: none;
-        }
-        footer a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-        .social-icons a {
-            font-size: 1.5rem;
-            margin-right: 15px;
-            color: #ccc;
-            transition: color 0.3s;
-        }
-        .social-icons a:hover {
-            color: white;
-        }
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nio Fibra | Atendimento</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+body{background:linear-gradient(to bottom,#ffffff,#F0F5EB);color:#14412A;padding-bottom:90px;}
+.container{width:100%;max-width:560px;margin:0 auto;}
+.header{background:linear-gradient(135deg,#071C0B,#14412A);height:22vh;min-height:150px;display:flex;justify-content:center;align-items:center;}
+.header .logo{display:flex;align-items:center;gap:6px;font-size:34px;font-weight:800;color:#fff;letter-spacing:.5px;}
+.header .logo span{color:#32E000;}
+.hero{padding:24px 20px 10px;display:flex;justify-content:center;}
+.hero-card{width:100%;max-width:560px;border-radius:20px;overflow:hidden;box-shadow:0 10px 25px rgba(7,28,11,0.15);background:linear-gradient(135deg,#32E000,#1A7200);color:#0c2712;padding:28px 22px;text-align:center;}
+.hero-card i{font-size:34px;color:#0c2712;margin-bottom:10px;}
+.hero-card h1{font-size:22px;font-weight:800;margin:6px 0 4px;}
+.hero-card p{font-size:13px;font-weight:600;opacity:.85;}
+@media(min-width:992px){.hero-card{max-width:1000px;}}
+.contact{padding:14px 20px 25px;text-align:center;}
+.contact h2{margin-bottom:18px;font-size:clamp(18px,5vw,24px);color:#14412A;}
+.buttons{display:flex;flex-direction:column;gap:14px;max-width:560px;margin:0 auto;}
+.btn{background:linear-gradient(145deg,#14412A,#1A7200);color:#fff;padding:15px;border-radius:10px;text-decoration:none;font-size:16px;font-weight:700;display:flex;justify-content:center;align-items:center;gap:10px;transition:.3s;box-shadow:0 4px 8px rgba(0,0,0,.15);min-height:52px;}
+.btn:hover{transform:scale(1.03);}
+.btn i{color:#32E000;}
+.aviso{font-size:13px;padding:16px;text-align:center;line-height:1.5;color:#5A5F56;max-width:560px;margin:0 auto;}
+footer{background:linear-gradient(145deg,#071C0B,#14412A);color:#F0F5EB;padding:25px 15px;text-align:center;margin-top:30px;}
+footer a{color:#fff;text-decoration:underline;cursor:pointer;}
+.whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;width:55px;height:55px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:26px;box-shadow:0 4px 10px rgba(0,0,0,.3);z-index:999;text-decoration:none;}
+@media(min-width:600px){
+  .hero{padding:24px 24px 12px;}
+  .contact{padding:12px 24px 32px;}
+  .buttons{gap:16px;}
+  .btn{font-size:17px;padding:17px 20px;}
+  body{padding-bottom:0;}
+  .whatsapp-float{bottom:28px;right:28px;width:60px;height:60px;font-size:28px;}
+}
+@media(min-width:700px){
+  .container{max-width:680px;}
+  .hero-card{max-width:680px;padding:36px 30px;}
+  .hero-card h1{font-size:26px;}
+  .hero-card p{font-size:14px;}
+  .contact h2{font-size:26px;}
+  .buttons{max-width:680px;}
+}
+@media(max-width:360px){
+  .header{height:18vh;min-height:120px;}
+  .header .logo{font-size:26px;}
+  .hero{padding:14px 12px 8px;}
+  .hero-card{padding:20px 16px;}
+  .hero-card h1{font-size:18px;}
+  .contact{padding:8px 12px 20px;}
+  .btn{font-size:14px;padding:13px 10px;gap:8px;}
+  .buttons{gap:10px;}
+  footer{padding:20px 12px;font-size:13px;}
+}
+@media(max-height:500px) and (orientation:landscape){
+  .header{height:80px;min-height:80px;}
+  body{padding-bottom:70px;}
+}
+</style>
 </head>
 <body>
 
-<!-- Navegação -->
-<nav class="navbar navbar-expand-lg sticky-top py-3">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <i class="fas fa-leaf me-2"></i>Verbena Flores
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarMain">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-                <li class="nav-item"><a class="nav-link active" href="#inicio">Início</a></li>
-                <li class="nav-item"><a class="nav-link" href="#produtos">Destaques</a></li>
-                <li class="nav-item"><a class="nav-link" href="#diferenciais">Por que nós?</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
-                <li class="nav-item"><a class="btn btn-outline-custom ms-3" href="https://wa.me/551155066910" target="_blank"><i class="fab fa-whatsapp me-1"></i> Peça pelo WhatsApp</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<header class="header">
+  <div class="logo">nio<span>+</span></div>
+</header>
 
-<!-- Hero Section -->
-<section id="inicio" class="hero-section d-flex align-items-center">
-    <div class="container">
-        <h1 class="hero-title">Encante com Flores Naturais</h1>
-        <p class="hero-subtitle">Desde 2011 levando cor, perfume e emoção para São Paulo. Arranjos exclusivos, plantas ornamentais e muito mais.</p>
-        <a href="#contato" class="btn btn-primary-custom btn-lg me-3"><i class="fas fa-phone-alt me-2"></i>Fale Conosco</a>
-        <a href="#produtos" class="btn btn-outline-light btn-lg"><i class="fas fa-eye me-2"></i>Ver Destaques</a>
-    </div>
+<section class="hero">
+  <div class="hero-card">
+    <i class="fa-solid fa-headset"></i>
+    <h1>Central de Atendimento</h1>
+    <p>Fale com a gente pelo WhatsApp e resolva rapidinho</p>
+  </div>
 </section>
 
-<!-- Seção de ícones / diferenciais rápidos -->
-<section class="py-5 bg-light">
-    <div class="container text-center">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <i class="fas fa-truck features-icon"></i>
-                <h5>Entrega Rápida</h5>
-                <p class="text-muted">Entregamos no mesmo dia em toda Grande São Paulo.</p>
-            </div>
-            <div class="col-md-4">
-                <i class="fas fa-flower features-icon"></i>
-                <h5>Flores Selecionadas</h5>
-                <p class="text-muted">Trabalhamos com os melhores fornecedores do CEAGESP.</p>
-            </div>
-            <div class="col-md-4">
-                <i class="fas fa-heart features-icon"></i>
-                <h5>Amor em Cada Detalhe</h5>
-                <p class="text-muted">Mais de 14 anos encantando clientes com carinho.</p>
-            </div>
-        </div>
-    </div>
+<section class="contact">
+  <h2>Central de Atendimento</h2>
+  <div class="buttons">
+    <a href="#" onclick="return sendWhats('Ola, gostaria de atendimento.', event)" class="btn">
+      <i class="fa-brands fa-whatsapp"></i> Atendimento
+    </a>
+    <a href="#" onclick="return sendWhats('Ola, desejo solicitar cancelamento do meu plano.', event)" class="btn">
+      <i class="fa-solid fa-ban"></i> Cancelamento
+    </a>
+    <a href="#" onclick="return sendWhats('Ola, gostaria de consultar minha fatura.', event)" class="btn">
+      <i class="fa-solid fa-file-invoice"></i> Consultar Fatura
+    </a>
+    <a href="#" onclick="return sendWhats('Ola, preciso falar com um atendente.', event)" class="btn">
+      <i class="fa-solid fa-headset"></i> Falar com um Atendente
+    </a>
+  </div>
 </section>
 
-<!-- Produtos em Destaque (imagens do Unsplash como placeholder) -->
-<section id="produtos" class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-5">🌿 Nossos Clássicos</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card card-produto">
-                    <img src="https://images.unsplash.com/photo-1589123053646-4e8c49c46f86?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Buquê de rosas vermelhas">
-                    <div class="card-body">
-                        <h5 class="card-title">Buquê Rosas Vermelhas</h5>
-                        <p class="card-text text-muted">Perfeito para declarar seu amor. 12 rosas colombianas.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-produto">
-                    <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Arranjo tropical">
-                    <div class="card-body">
-                        <h5 class="card-title">Arranjo Tropical</h5>
-                        <p class="card-text text-muted">Mix de flores da estação, ideal para presentear.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-produto">
-                    <img src="https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Orquídea Phalaenopsis">
-                    <div class="card-body">
-                        <h5 class="card-title">Orquídea Phalaenopsis</h5>
-                        <p class="card-text text-muted">Elegância e durabilidade. Vaso decorativo incluso.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-4">
-            <p><em>“As flores desabrocham para continuar a viver, porque o amor é a essência da vida.”</em> – Dejan Stojanovic</p>
-        </div>
-    </div>
+<section class="aviso">
+Este site e um portal informativo independente de orientacao tecnica para usuarios de servicos de internet. Nao somos operadora de telecomunicacoes, provedor de internet ou canal oficial de atendimento de empresas do setor. As marcas eventualmente mencionadas sao utilizadas apenas para fins informativos. Para suporte oficial, alteracoes contratuais ou servicos tecnicos, utilize sempre os canais oficiais das operadoras.
 </section>
 
-<!-- Diferenciais / Por que nos escolher -->
-<section id="diferenciais" class="py-5 bg-light">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-4 shadow" alt="Florista preparando arranjo">
-            </div>
-            <div class="col-lg-6">
-                <h2>✨ Por que a Verbena Flores?</h2>
-                <ul class="list-unstyled mt-4">
-                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> <strong>Ativa desde 2011</strong> – mais de uma década de tradição.</li>
-                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> <strong>Atendimento personalizado</strong> via WhatsApp ou telefone.</li>
-                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> <strong>Entregas para toda São Paulo</strong> com segurança e pontualidade.</li>
-                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> <strong>Variedade de espécies</strong>: rosas, orquídeas, girassóis, plantas ornamentais.</li>
-                </ul>
-                <a href="sobre.html" class="btn btn-outline-custom mt-3">Conheça nossa história</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Depoimento / Frase -->
-<section class="py-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="depoimento text-center">
-                    <i class="fas fa-quote-left fa-2x text-muted mb-3"></i>
-                    <p class="fs-5">"As plantas e flores têm o poder de transformar ambientes e emoções. Na Verbena, cada arranjo é pensado para levar um sorriso ao rosto de quem recebe."</p>
-                    <p class="fw-bold mt-3 mb-0">— Equipe Verbena Flores</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Contato / Localização -->
-<section id="contato" class="py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center mb-5">📞 Fale com a Verbena</h2>
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="p-4 bg-white rounded-4 shadow-sm h-100">
-                    <h5><i class="fas fa-phone-alt me-2 text-success"></i> Telefones</h5>
-                    <p class="ms-4"><a href="tel:+551155066910" class="text-dark text-decoration-none">(11) 5506-6910</a></p>
-                    <p class="ms-4"><a href="tel:+551145087170" class="text-dark text-decoration-none">(11) 4508-7170</a></p>
-                    <h5 class="mt-4"><i class="fas fa-envelope me-2 text-success"></i> E-mail</h5>
-                    <p class="ms-4"><a href="mailto:administrativo@verbenaflores.com.br" class="text-dark">administrativo@verbenaflores.com.br</a></p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="p-4 bg-white rounded-4 shadow-sm h-100">
-                    <h5><i class="fas fa-map-marker-alt me-2 text-success"></i> Endereço</h5>
-                    <p class="ms-4">Rua Alfredo Mendes da Silva, 500<br>Jardim Jussara – São Paulo – SP<br>CEP: 05525-000</p>
-                    <h5 class="mt-4"><i class="fas fa-clock me-2 text-success"></i> Horário de funcionamento</h5>
-                    <p class="ms-4">Segunda a sexta: 8h às 18h<br>Sábado: 8h às 13h</p>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-4">
-            <a href="https://wa.me/551155066910" target="_blank" class="btn btn-success btn-lg"><i class="fab fa-whatsapp me-2"></i> Fazer um pedido agora</a>
-        </div>
-    </div>
-</section>
-
-<!-- Rodapé -->
-<footer class="pt-5 pb-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <h5 class="text-white"><i class="fas fa-leaf me-2"></i>Verbena Flores</h5>
-                <p>Comércio varejista de plantas e flores naturais.<br>CNPJ: 14.141.179/0001-01</p>
-                <div class="social-icons mt-3">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <h5 class="text-white">Links úteis</h5>
-                <ul class="list-unstyled">
-                    <li><a href="sobre.html">Sobre a empresa</a></li>
-                    <li><a href="privacidade.html">Política de Privacidade</a></li>
-                    <li><a href="termos.html">Termos de Uso</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4 mb-4">
-                <h5 class="text-white">Contato rápido</h5>
-                <p><i class="fas fa-phone me-2"></i> (11) 5506-6910</p>
-                <p><i class="fas fa-envelope me-2"></i> administrativo@verbenaflores.com.br</p>
-                <p><i class="fas fa-map-pin me-2"></i> Jardim Jussara – SP</p>
-            </div>
-        </div>
-        <hr class="border-secondary">
-        <div class="text-center">
-            <small>&copy; 2026 Verbena Comercio de Plantas e Flores LTDA. Todos os direitos reservados.</small>
-        </div>
-    </div>
+<footer>
+  <p>Pagina de parceiro autorizado Nio Fibra.</p>
+  <p>&copy;2026. Todos os direitos reservados</p>
 </footer>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<a href="#" onclick="return sendWhats('Ola, preciso de atendimento.', event)" class="whatsapp-float">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<script>
+function sendWhats(msg,e){
+  if(e) e.preventDefault();
+  var phone='551153047890';
+  window.open('https://wa.me/'+phone+'?text='+encodeURIComponent(msg),'_blank');
+  return false;
+}
+</script>
 </body>
 </html>
