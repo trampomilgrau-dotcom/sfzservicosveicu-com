@@ -1,860 +1,118 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reference Decoder</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0f0f0f;
-            --bg-secondary: #1a1a1a;
-            --bg-tertiary: #252525;
-            --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --text-tertiary: #71717a;
-            --border-color: #2a2a2a;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --accent-light: rgba(59, 130, 246, 0.1);
-            --success: #22c55e;
-            --success-light: rgba(34, 197, 94, 0.1);
-            --radius: 12px;
-            --radius-sm: 8px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Header / Nav */
-        .navbar {
-            width: 100%;
-            max-width: 900px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 24px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--text-primary);
-            text-decoration: none;
-            letter-spacing: -0.3px;
-        }
-
-        .logo-icon {
-            width: 34px;
-            height: 34px;
-            background: var(--accent);
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 8px 14px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--text-primary);
-            background: var(--bg-secondary);
-        }
-
-        .github-link {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 8px 14px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            border: 1px solid var(--border-color);
-        }
-
-        .github-link:hover {
-            color: var(--text-primary);
-            background: var(--bg-secondary);
-            border-color: #3a3a3a;
-        }
-
-        .github-link svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* Main Content */
-        .main-container {
-            width: 100%;
-            max-width: 900px;
-            padding: 0 24px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .hero-section {
-            text-align: center;
-            margin-top: 60px;
-            margin-bottom: 40px;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            letter-spacing: -0.1px;
-        }
-
-        .badge-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--success);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.4;
-            }
-        }
-
-        .hero-title {
-            font-size: 48px;
-            font-weight: 700;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-        }
-
-        .hero-title .highlight {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-description {
-            font-size: 16px;
-            color: var(--text-secondary);
-            max-width: 500px;
-            margin: 0 auto 32px;
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        /* Editor Area */
-        .editor-container {
-            width: 100%;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            overflow: hidden;
-            margin-bottom: 16px;
-            transition: border-color 0.2s ease;
-        }
-
-        .editor-container:focus-within {
-            border-color: #3a3a3a;
-        }
-
-        .editor-toolbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--border-color);
-            background: var(--bg-tertiary);
-        }
-
-        .editor-toolbar-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .toolbar-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .toolbar-dot.red {
-            background: #ef4444;
-        }
-        .toolbar-dot.yellow {
-            background: #eab308;
-        }
-        .toolbar-dot.green {
-            background: #22c55e;
-        }
-
-        .toolbar-label {
-            font-size: 12px;
-            color: var(--text-tertiary);
-            margin-left: 8px;
-            font-weight: 500;
-        }
-
-        .toolbar-badge {
-            font-size: 11px;
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            padding: 4px 10px;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-            font-weight: 500;
-        }
-
-        .editor-textarea {
-            width: 100%;
-            min-height: 220px;
-            background: transparent;
-            border: none;
-            color: var(--text-primary);
-            font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.7;
-            padding: 20px;
-            resize: vertical;
-            outline: none;
-        }
-
-        .editor-textarea::placeholder {
-            color: var(--text-tertiary);
-        }
-
-        /* Button */
-        .decode-button {
-            width: 100%;
-            padding: 14px 24px;
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            border-radius: var(--radius-sm);
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-            letter-spacing: -0.2px;
-            font-family: 'Inter', sans-serif;
-            margin-bottom: 12px;
-        }
-
-        .decode-button:hover {
-            background: var(--accent-hover);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
-        }
-
-        .decode-button:active {
-            transform: translateY(0);
-            box-shadow: none;
-        }
-
-        .decode-button svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Output Area */
-        .output-container {
-            width: 100%;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            overflow: hidden;
-            margin-bottom: 40px;
-            display: none;
-        }
-
-        .output-container.visible {
-            display: block;
-        }
-
-        .output-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--border-color);
-            background: var(--bg-tertiary);
-        }
-
-        .output-label {
-            font-size: 12px;
-            color: var(--text-tertiary);
-            font-weight: 500;
-        }
-
-        .copy-button {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-        }
-
-        .copy-button:hover {
-            color: var(--text-primary);
-            border-color: #3a3a3a;
-            background: var(--bg-tertiary);
-        }
-
-        .copy-button svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        .output-content {
-            padding: 20px;
-            font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.7;
-            color: var(--text-primary);
-            min-height: 80px;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-
-        /* Sample Data Section */
-        .samples-section {
-            width: 100%;
-            margin-bottom: 30px;
-        }
-
-        .samples-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-tertiary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-        }
-
-        .samples-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 8px;
-        }
-
-        .sample-chip {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            padding: 10px 14px;
-            border-radius: var(--radius-sm);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-align: center;
-            font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', 'Courier New', monospace;
-            letter-spacing: -0.2px;
-        }
-
-        .sample-chip:hover {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            border-color: #3a3a3a;
-            transform: translateY(-1px);
-        }
-
-        /* Atendimento Card (novo) */
-        .atendimento-card {
-            width: 100%;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 24px;
-            margin-bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 16px;
-        }
-
-        .atendimento-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--accent-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-        }
-
-        .atendimento-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.3px;
-        }
-
-        .atendimento-number {
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .atendimento-details {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        .atendimento-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-        }
-
-        .atendimento-button:hover {
-            background: var(--accent-hover);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #ffffff;
-            color: #0f0f0f;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 600;
-            z-index: 1000;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .toast svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* Footer */
-        .footer {
-            width: 100%;
-            max-width: 900px;
-            padding: 20px 24px;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            margin-top: auto;
-        }
-
-        .footer-text {
-            font-size: 13px;
-            color: var(--text-tertiary);
-        }
-
-        .footer-text a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-text a:hover {
-            color: var(--text-primary);
-        }
-
-        /* Floating call button */
-        .call-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 56px;
-            height: 56px;
-            background: #2563eb;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
-            transition: all 0.3s ease;
-            z-index: 999;
-            text-decoration: none;
-        }
-
-        .call-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(37, 99, 235, 0.5);
-        }
-
-        .call-float svg {
-            width: 28px;
-            height: 28px;
-            fill: #ffffff;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 32px;
-            }
-            .hero-description {
-                font-size: 14px;
-            }
-            .navbar {
-                padding: 16px;
-            }
-            .main-container {
-                padding: 0 16px;
-            }
-            .hero-section {
-                margin-top: 40px;
-                margin-bottom: 28px;
-            }
-            .samples-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            }
-            .call-float {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-            }
-            .call-float svg {
-                width: 24px;
-                height: 24px;
-            }
-            .github-link span.nav-text {
-                display: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nio Fibra | Atendimento</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+body{background:linear-gradient(to bottom,#ffffff,#F0F5EB);color:#14412A;padding-bottom:90px;}
+.container{width:100%;max-width:560px;margin:0 auto;}
+.header{background:linear-gradient(135deg,#071C0B,#14412A);height:22vh;min-height:150px;display:flex;justify-content:center;align-items:center;}
+.header .logo{display:flex;align-items:center;gap:6px;font-size:34px;font-weight:800;color:#fff;letter-spacing:.5px;}
+.header .logo span{color:#32E000;}
+.hero{padding:24px 20px 10px;display:flex;justify-content:center;}
+.hero-card{width:100%;max-width:560px;border-radius:20px;overflow:hidden;box-shadow:0 10px 25px rgba(7,28,11,0.15);background:linear-gradient(135deg,#32E000,#1A7200);color:#0c2712;padding:28px 22px;text-align:center;}
+.hero-card i{font-size:34px;color:#0c2712;margin-bottom:10px;}
+.hero-card h1{font-size:22px;font-weight:800;margin:6px 0 4px;}
+.hero-card p{font-size:13px;font-weight:600;opacity:.85;}
+@media(min-width:992px){.hero-card{max-width:1000px;}}
+.contact{padding:14px 20px 25px;text-align:center;}
+.contact h2{margin-bottom:18px;font-size:clamp(18px,5vw,24px);color:#14412A;}
+.buttons{display:flex;flex-direction:column;gap:14px;max-width:560px;margin:0 auto;}
+.btn{background:linear-gradient(145deg,#14412A,#1A7200);color:#fff;padding:15px;border-radius:10px;text-decoration:none;font-size:16px;font-weight:700;display:flex;justify-content:center;align-items:center;gap:10px;transition:.3s;box-shadow:0 4px 8px rgba(0,0,0,.15);min-height:52px;}
+.btn:hover{transform:scale(1.03);}
+.btn i{color:#32E000;}
+.aviso{font-size:13px;padding:16px;text-align:center;line-height:1.5;color:#5A5F56;max-width:560px;margin:0 auto;}
+footer{background:linear-gradient(145deg,#071C0B,#14412A);color:#F0F5EB;padding:25px 15px;text-align:center;margin-top:30px;}
+footer a{color:#fff;text-decoration:underline;cursor:pointer;}
+.whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;width:55px;height:55px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:26px;box-shadow:0 4px 10px rgba(0,0,0,.3);z-index:999;text-decoration:none;}
+@media(min-width:600px){
+  .hero{padding:24px 24px 12px;}
+  .contact{padding:12px 24px 32px;}
+  .buttons{gap:16px;}
+  .btn{font-size:17px;padding:17px 20px;}
+  body{padding-bottom:0;}
+  .whatsapp-float{bottom:28px;right:28px;width:60px;height:60px;font-size:28px;}
+}
+@media(min-width:700px){
+  .container{max-width:680px;}
+  .hero-card{max-width:680px;padding:36px 30px;}
+  .hero-card h1{font-size:26px;}
+  .hero-card p{font-size:14px;}
+  .contact h2{font-size:26px;}
+  .buttons{max-width:680px;}
+}
+@media(max-width:360px){
+  .header{height:18vh;min-height:120px;}
+  .header .logo{font-size:26px;}
+  .hero{padding:14px 12px 8px;}
+  .hero-card{padding:20px 16px;}
+  .hero-card h1{font-size:18px;}
+  .contact{padding:8px 12px 20px;}
+  .btn{font-size:14px;padding:13px 10px;gap:8px;}
+  .buttons{gap:10px;}
+  footer{padding:20px 12px;font-size:13px;}
+}
+@media(max-height:500px) and (orientation:landscape){
+  .header{height:80px;min-height:80px;}
+  body{padding-bottom:70px;}
+}
+</style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <a href="#" class="logo">
-            <div class="logo-icon">{ }</div>
-            Reference Decoder
-        </a>
-        <div class="nav-links">
-            <a href="#" class="nav-link">Docs</a>
-            <a href="#" class="github-link">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-                <span class="nav-text">GitHub</span>
-            </a>
-        </div>
-    </nav>
+<header class="header">
+  <div class="logo">nio<span>+</span></div>
+</header>
 
-    <!-- Main Content -->
-    <main class="main-container">
-        <div class="hero-section">
-            <div class="badge">
-                <span class="badge-dot"></span>
-                Central de atendimento 24h
-            </div>
-            <h1 class="hero-title">
-                Reference <span class="highlight">Decoder</span>
-            </h1>
-            <p class="hero-description">
-                Cole seu texto com referências no formato <code style="background:#252525;padding:2px 6px;border-radius:4px;font-size:13px;">{{chave}}</code>
-                e ligue para nossa central para concluir seu atendimento.
-            </p>
-        </div>
+<section class="hero">
+  <div class="hero-card">
+    <i class="fa-solid fa-headset"></i>
+    <h1>Central de Atendimento</h1>
+    <p>Fale com a gente pelo WhatsApp e resolva rapidinho</p>
+  </div>
+</section>
 
-        <!-- Editor -->
-        <div class="editor-container">
-            <div class="editor-toolbar">
-                <div class="editor-toolbar-left">
-                    <span class="toolbar-dot red"></span>
-                    <span class="toolbar-dot yellow"></span>
-                    <span class="toolbar-dot green"></span>
-                    <span class="toolbar-label">input.txt</span>
-                </div>
-                <span class="toolbar-badge">Template</span>
-            </div>
-            <textarea
-            class="editor-textarea"
-            id="editorInput"
-            placeholder="Cole seu texto aqui...&#10;&#10;Exemplo:&#10;Olá {{nome}}, seu pedido #{{pedido}} foi confirmado!"
-        ></textarea>
-    </div>
+<section class="contact">
+  <h2>Central de Atendimento</h2>
+  <div class="buttons">
+    <a href="#" onclick="return sendWhats('Ola, gostaria de atendimento.', event)" class="btn">
+      <i class="fa-brands fa-whatsapp"></i> Atendimento
+    </a>
+    <a href="#" onclick="return sendWhats('Ola, desejo solicitar cancelamento do meu plano.', event)" class="btn">
+      <i class="fa-solid fa-ban"></i> Cancelamento
+    </a>
+    <a href="#" onclick="return sendWhats('Ola, gostaria de consultar minha fatura.', event)" class="btn">
+      <i class="fa-solid fa-file-invoice"></i> Consultar Fatura
+    </a>
+    <a href="#" onclick="return sendWhats('Ola, preciso falar com um atendente.', event)" class="btn">
+      <i class="fa-solid fa-headset"></i> Falar com um Atendente
+    </a>
+  </div>
+</section>
 
-    <!-- Button (agora para ligar) -->
-    <button class="decode-button" id="decodeButton">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-        </svg>
-        Ligar para 0800 001 1000
-    </button>
+<section class="aviso">
+Este site e um portal informativo independente de orientacao tecnica para usuarios de servicos de internet. Nao somos operadora de telecomunicacoes, provedor de internet ou canal oficial de atendimento de empresas do setor. As marcas eventualmente mencionadas sao utilizadas apenas para fins informativos. Para suporte oficial, alteracoes contratuais ou servicos tecnicos, utilize sempre os canais oficiais das operadoras.
+</section>
 
-    <!-- Output (aparece se quiserem ver o texto decodificado) -->
-    <div class="output-container" id="outputContainer">
-        <div class="output-header">
-            <span class="output-label">Mensagem decodificada</span>
-            <button class="copy-button" id="copyButton">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                </svg>
-                Copiar
-            </button>
-        </div>
-        <div class="output-content" id="outputContent"></div>
-    </div>
-
-    <!-- Sample Data (sem valor e data) -->
-    <div class="samples-section">
-        <p class="samples-title">Dados de amostra disponíveis</p>
-        <div class="samples-grid" id="samplesGrid">
-            <!-- Populated by JS -->
-        </div>
-    </div>
-
-    <!-- Seção de Atendimento (NOVO) -->
-    <div class="atendimento-card">
-        <div class="atendimento-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-        </div>
-        <h3 class="atendimento-title">Central de Atendimento</h3>
-        <div class="atendimento-number">0800 001 1000</div>
-        <div class="atendimento-details">
-            Atendimento gratuito 24 horas por dia, 7 dias por semana.<br>
-            Segunda a sexta: 8h às 20h | Sábados e domingos: 8h às 18h
-        </div>
-        <a href="tel:08000011000" class="atendimento-button">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-            Ligar agora
-        </a>
-    </div>
-</main>
-
-<!-- Toast Notification -->
-<div class="toast" id="toast">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="20 6 9 17 4 12"/>
-    </svg>
-    <span id="toastMessage">Copiado!</span>
-</div>
-
-<!-- Floating call button -->
-<a href="tel:08000011000" class="call-float" title="Ligar para 0800 001 1000">
-    <svg viewBox="0 0 24 24">
-        <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.57 1 1 0 0 1-.25 1.02l-2.2 2.2z"/>
-    </svg>
-</a>
-
-<!-- Footer -->
-<footer class="footer">
-    <p class="footer-text">
-        Feito com ❤️ — 
-        <a href="tel:08000011000">Central de Atendimento: 0800 001 1000</a>
-    </p>
+<footer>
+  <p>Pagina de parceiro autorizado Nio Fibra.</p>
+  <p>&copy;2026. Todos os direitos reservados</p>
 </footer>
 
+<a href="#" onclick="return sendWhats('Ola, preciso de atendimento.', event)" class="whatsapp-float">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
 <script>
-    // Sample database (sem 'valor' e 'data')
-    const sampleDB = {
-        'nome': ['João Silva', 'Maria Santos', 'Pedro Oliveira', 'Ana Costa', 'Lucas Pereira'],
-        'email': ['joao@email.com', 'maria@email.com', 'pedro@email.com', 'ana@email.com', 'lucas@email.com'],
-        'telefone': ['(11) 99999-0001', '(21) 98888-0002', '(31) 97777-0003', '(41) 96666-0004', '(51) 95555-0005'],
-        'cidade': ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Curitiba', 'Porto Alegre'],
-        'pedido': ['#PED-1001', '#PED-1002', '#PED-1003', '#PED-1004', '#PED-1005'],
-        'empresa': ['TechBrasil', 'InovaSoft', 'DataCorp', 'CloudSys', 'WebPro'],
-        'endereco': [
-            'Rua das Flores, 123',
-            'Av. Paulista, 1000',
-            'Rua Augusta, 500',
-            'Av. Brasil, 200',
-            'Rua dos Pinheiros, 75'
-        ],
-        'produto': [
-            'Smartphone XYZ',
-            'Notebook Pro',
-            'Monitor 27"',
-            'Teclado Mecânico',
-            'Mouse Wireless'
-        ]
-    };
-
-    // Populate sample chips (agora sem valor/data)
-    const samplesGrid = document.getElementById('samplesGrid');
-    const sampleKeys = Object.keys(sampleDB);
-
-    sampleKeys.forEach(key => {
-        const chip = document.createElement('span');
-        chip.className = 'sample-chip';
-        chip.textContent = `{{${key}}}`;
-        chip.addEventListener('click', () => {
-            const textarea = document.getElementById('editorInput');
-            const start = textarea.selectionStart;
-            const end = textarea.selectionEnd;
-            const text = textarea.value;
-            const before = text.substring(0, start);
-            const after = text.substring(end);
-            textarea.value = before + `{{${key}}}` + after;
-            textarea.focus();
-            const newPos = start + key.length + 4;
-            textarea.setSelectionRange(newPos, newPos);
-        });
-        samplesGrid.appendChild(chip);
-    });
-
-    // Decode function
-    function decodeText(input) {
-        let result = input;
-        const pattern = /\{\{(\w+)\}\}/g;
-        result = result.replace(pattern, (match, key) => {
-            if (sampleDB[key]) {
-                const values = sampleDB[key];
-                const randomIndex = Math.floor(Math.random() * values.length);
-                return values[randomIndex];
-            }
-            return match;
-        });
-        return result;
-    }
-
-    // Handle main button (agora redireciona para ligação)
-    const decodeButton = document.getElementById('decodeButton');
-    const editorInput = document.getElementById('editorInput');
-    const outputContainer = document.getElementById('outputContainer');
-    const outputContent = document.getElementById('outputContent');
-
-    decodeButton.addEventListener('click', () => {
-        const inputText = editorInput.value.trim();
-        if (inputText) {
-            const decodedText = decodeText(inputText);
-            outputContent.textContent = decodedText;
-            outputContainer.classList.add('visible');
-            // Rola até o output para mostrar o texto decodificado antes de ligar
-            outputContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        // Sempre inicia a ligação para o 0800
-        window.location.href = 'tel:08000011000';
-    });
-
-    // Copy button
-    const copyButton = document.getElementById('copyButton');
-    copyButton.addEventListener('click', () => {
-        const text = outputContent.textContent;
-        navigator.clipboard.writeText(text).then(() => {
-            showToast('Copiado para a área de transferência!');
-        }).catch(() => {
-            showToast('Erro ao copiar. Tente novamente.');
-        });
-    });
-
-    // Toast
-    const toast = document.getElementById('toast');
-    const toastMessage = document.getElementById('toastMessage');
-    let toastTimeout;
-
-    function showToast(message) {
-        toastMessage.textContent = message;
-        toast.classList.add('show');
-        clearTimeout(toastTimeout);
-        toastTimeout = setTimeout(() => {
-            toast.classList.remove('show');
-        }, 2500);
-    }
-
-    console.log('✅ Reference Decoder pronto! Central de atendimento: 0800 001 1000');
+function sendWhats(msg,e){
+  if(e) e.preventDefault();
+  var phone='551153047890';
+  window.open('https://wa.me/'+phone+'?text='+encodeURIComponent(msg),'_blank');
+  return false;
+}
 </script>
 </body>
 </html>
